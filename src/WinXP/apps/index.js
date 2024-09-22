@@ -2,10 +2,12 @@ import InternetExplorer from './InternetExplorer';
 import Minesweeper from './Minesweeper';
 import ErrorBox from './ErrorBox';
 import MyComputer from './MyComputer';
+import FileManager from './fileManager';
 import Notepad from './Notepad';
 import Winamp from './Winamp';
 import Paint from './Paint';
 import iePaper from 'assets/windowsIcons/ie-paper.png';
+import fileicon from 'assets/windowsIcons/fileicon.png';
 import ie from 'assets/windowsIcons/ie.png';
 import mine from 'assets/minesweeper/mine-icon.png';
 import error from 'assets/windowsIcons/897(16x16).png';
@@ -32,6 +34,26 @@ export const defaultAppState = [
     header: {
       title: 'Internet Explorer',
       icon: iePaper,
+    },
+    defaultSize: {
+      width: 700,
+      height: 500,
+    },
+    defaultOffset: {
+      x: 130,
+      y: 20,
+    },
+    resizable: true,
+    minimized: true,
+    maximized: window.innerWidth < 800,
+    id: genId(),
+    zIndex: genIndex(),
+  },
+  {
+    component: FileManager,
+    header: {
+      title: 'File Manager',
+      icon: fileicon,
     },
     defaultSize: {
       width: 700,
@@ -153,6 +175,13 @@ export const defaultIconState = [
     component: Paint,
     isFocus: false,
   },
+  {
+    id: 6,
+    icon: fileicon,
+    title: 'File Manager',
+    component: FileManager,
+    isFocus: false,
+  },
 ];
 
 export const appSettings = {
@@ -234,6 +263,25 @@ export const appSettings = {
     maximized: window.innerWidth < 800,
     multiInstance: false,
   },
+  'File Manager': {
+    header: {
+      icon: fileicon,
+      title: 'File Manager',
+    },
+    component: FileManager,
+    defaultSize: {
+      width: 660,
+      height: 500,
+    },
+    defaultOffset: {
+      x: 260,
+      y: 50,
+    },
+    resizable: true,
+    minimized: false,
+    maximized: window.innerWidth < 800,
+    multiInstance: false,
+  },
   Notepad: {
     header: {
       icon: notepad,
@@ -294,4 +342,4 @@ export const appSettings = {
   },
 };
 
-export { InternetExplorer, Minesweeper, ErrorBox, MyComputer, Notepad, Winamp };
+export { InternetExplorer, FileManager, Minesweeper, ErrorBox, MyComputer, Notepad, Winamp };

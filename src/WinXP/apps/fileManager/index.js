@@ -47,7 +47,7 @@ const initialFiles = [
   },
 ];
 
-function MyComputer({ onClose }) {
+function FileManager({ onClose }) {
   const openFolder = (folder) => {
     if (folder.type === 'folder') {
       setCurrentFolder(folder.items);
@@ -784,4 +784,4 @@ const Div = styled.div`
   }
 `;
 
-export default MyComputer;
+export default FileManager;
