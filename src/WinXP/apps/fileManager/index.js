@@ -60,29 +60,31 @@ function FileManager({ onClose }) {
 
   const [currentChildren, editCurrentChildren] = useState(Initialfolders);
   const [breadcrumb, setBreadcrumb] = useState([{ name: "Root", children: Initialfolders }]);
-  const [isEmptyFolder, setIsEmptyFolder] = useState(false);
+  const [isRoot, setIsRoot] = useState(true);
 
 
   function folderClickHandler(event){
     const clickedItem = event.target.id;
     const clickedFolder = currentChildren.find((item) => item.name === clickedItem);
-    console.log(clickedFolder);
     setBreadcrumb([...breadcrumb, clickedFolder]);
     editCurrentChildren(clickedFolder.children);
-    if(breadcrumb){
-      setIsEmptyFolder(true);
+    if(currentChildren === Initialfolders){
+      setIsRoot(true);
+    } else {
+      setIsRoot(false);
     }
+    console.log(isRoot);
   }
 
   function displayFolder(itemData){
     return <div id={itemData.name} onClick={folderClickHandler} className="com__content__right__card__item">
-    <img
+    <img id={itemData.name}
       src={folder}
       alt="folder"
       className="com__content__right__card__img"
     />
-    <div className="com__content__right__card__img-container">
-      <div className="com__content__right__card__text">
+    <div id={itemData.name} className="com__content__right__card__img-container">
+      <div  id={itemData.name} className="com__content__right__card__text">
         {itemData.name}
       </div>
     </div>
@@ -90,12 +92,17 @@ function FileManager({ onClose }) {
   }
 
   function backClickHandler(){
-    console.log("clicked back");
     if(breadcrumb.length > 1){
       const newBreadcrumb = breadcrumb.slice(0, breadcrumb.length - 1);
       const parentFolder = newBreadcrumb[newBreadcrumb.length - 1];
       setBreadcrumb(newBreadcrumb);
       editCurrentChildren(parentFolder.children);
+      if(currentChildren === Initialfolders){
+        setIsRoot(true);
+      } else {
+        setIsRoot(false);
+      }
+      console.log(isRoot);
     }
   }
 
@@ -111,13 +118,9 @@ function FileManager({ onClose }) {
         <img className="com__windows-logo" src={windows} alt="windows" />
       </section>
       <section className="com__function_bar">
-        <div className="com__function_bar__button--disable">
-          <img className="com__function_bar__icon" src={isEmptyFolder? back : blueback} onClick={backClickHandler} alt="" />
-          <span className="com__function_bar__text">Back</span>
-          <div className="com__function_bar__arrow" />
-        </div>
-        <div className="com__function_bar__button--disable">
-          <img className="com__function_bar__icon" src={forward} alt="" />
+        <div onClick={backClickHandler} className={isRoot? "com__function_bar__button--disable" : "com__function_bar__button"}>
+          <img className="com__function_bar__icon" src={back} onClick={backClickHandler} alt="" />
+          <span onClick={backClickHandler} className="com__function_bar__text">Back</span>
           <div className="com__function_bar__arrow" />
         </div>
         <div className="com__function_bar__button">
