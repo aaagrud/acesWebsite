@@ -7,6 +7,7 @@ import go from 'assets/windowsIcons/290.png';
 import search from 'assets/windowsIcons/299(32x32).png';
 import computer from 'assets/windowsIcons/676(16x16).png';
 import back from 'assets/windowsIcons/back.png';
+import blueback from 'assets/windowsIcons/back.png';
 import forward from 'assets/windowsIcons/forward.png';
 import up from 'assets/windowsIcons/up.png';
 import viewInfo from 'assets/windowsIcons/view-info.ico';
@@ -58,13 +59,19 @@ function FileManager({ onClose }) {
   ]
 
   const [currentChildren, editCurrentChildren] = useState(Initialfolders);
+  const [breadcrumb, setBreadcrumb] = useState([{ name: "Root", children: Initialfolders }]);
+  const [isEmptyFolder, setIsEmptyFolder] = useState(false);
 
 
   function folderClickHandler(event){
     const clickedItem = event.target.id;
-    const folderItem = currentChildren.filter((item) => {return item.name === clickedItem});
-    console.log(currentChildren);
-    editCurrentChildren(folderItem[0].children);
+    const clickedFolder = currentChildren.find((item) => item.name === clickedItem);
+    console.log(clickedFolder);
+    setBreadcrumb([...breadcrumb, clickedFolder]);
+    editCurrentChildren(clickedFolder.children);
+    if(breadcrumb){
+      setIsEmptyFolder(true);
+    }
   }
 
   function displayFolder(itemData){
@@ -81,6 +88,17 @@ function FileManager({ onClose }) {
     </div>
   </div>
   }
+
+  function backClickHandler(){
+    console.log("clicked back");
+    if(breadcrumb.length > 1){
+      const newBreadcrumb = breadcrumb.slice(0, breadcrumb.length - 1);
+      const parentFolder = newBreadcrumb[newBreadcrumb.length - 1];
+      setBreadcrumb(newBreadcrumb);
+      editCurrentChildren(parentFolder.children);
+    }
+  }
+
   return (
     <Div>
       <section className="com__toolbar">
@@ -94,7 +112,7 @@ function FileManager({ onClose }) {
       </section>
       <section className="com__function_bar">
         <div className="com__function_bar__button--disable">
-          <img className="com__function_bar__icon" src={back} alt="" />
+          <img className="com__function_bar__icon" src={isEmptyFolder? back : blueback} onClick={backClickHandler} alt="" />
           <span className="com__function_bar__text">Back</span>
           <div className="com__function_bar__arrow" />
         </div>
