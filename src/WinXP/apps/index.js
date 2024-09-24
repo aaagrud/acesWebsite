@@ -2,7 +2,7 @@ import InternetExplorer from './InternetExplorer';
 import Minesweeper from './Minesweeper';
 import ErrorBox from './ErrorBox';
 import MyComputer from './MyComputer';
-import FileManager from './fileManager';
+import FileManager from './FileManager';
 import Notepad from './Notepad';
 import Winamp from './Winamp';
 import Paint from './Paint';

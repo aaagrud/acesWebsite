@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
 import { WindowDropDowns } from 'components';
@@ -26,40 +26,7 @@ import logo from 'assets/github-logo.png';
 import mine from 'assets/minesweeper/mine-icon.png';
 import windows from 'assets/windowsIcons/windows.png';
 
-const initialFiles = [
-  {
-    id: 1,
-    name: 'Shared Documents',
-    type: 'folder',
-    items: [
-      { id: 2, name: 'Project A', type: 'folder', items: [] },
-      { id: 3, name: 'Resume.docx', type: 'file' },
-    ],
-  },
-  {
-    id: 4,
-    name: 'User\'s Documents',
-    type: 'folder',
-    items: [
-      { id: 5, name: 'Report.pdf', type: 'file' },
-      { id: 6, name: 'Presentation.pptx', type: 'file' },
-    ],
-  },
-];
-
 function FileManager({ onClose }) {
-  const openFolder = (folder) => {
-    if (folder.type === 'folder') {
-      setCurrentFolder(folder.items);
-    }
-  };
-
-  const goBack = () => {
-    // Logic to go back to the previous folder (if needed)
-    // For this simple case, we'll reset to the initial files
-    setCurrentFolder(files);
-  };
-  
   function onClickOptionItem(item) {
     switch (item) {
       case 'Close':
@@ -67,6 +34,52 @@ function FileManager({ onClose }) {
         break;
       default:
     }
+  }
+
+  const Initialfolders = [
+    {
+      name: "Shared Documents",
+      children: [
+        {
+          name: "Untitled",
+          children: [],
+        }
+      ],
+    },
+    {
+      name: "User's Documents",
+      children: [
+        {
+          name: "Story.txt",
+          children: [],
+        }
+      ],
+    }
+  ]
+
+  const [currentChildren, editCurrentChildren] = useState(Initialfolders);
+
+
+  function folderClickHandler(event){
+    const clickedItem = event.target.id;
+    const folderItem = currentChildren.filter((item) => {return item.name === clickedItem});
+    console.log(currentChildren);
+    editCurrentChildren(folderItem[0].children);
+  }
+
+  function displayFolder(itemData){
+    return <div id={itemData.name} onClick={folderClickHandler} className="com__content__right__card__item">
+    <img
+      src={folder}
+      alt="folder"
+      className="com__content__right__card__img"
+    />
+    <div className="com__content__right__card__img-container">
+      <div className="com__content__right__card__text">
+        {itemData.name}
+      </div>
+    </div>
+  </div>
   }
   return (
     <Div>
@@ -302,30 +315,7 @@ function FileManager({ onClose }) {
                 Files Stored on This Computer
               </div>
               <div className="com__content__right__card__content">
-                <div className="com__content__right__card__item">
-                  <img
-                    src={folder}
-                    alt="folder"
-                    className="com__content__right__card__img"
-                  />
-                  <div className="com__content__right__card__img-container">
-                    <div className="com__content__right__card__text">
-                      Shared Documents
-                    </div>
-                  </div>
-                </div>
-                <div className="com__content__right__card__item">
-                  <img
-                    src={folder}
-                    alt="folder"
-                    className="com__content__right__card__img"
-                  />
-                  <div className="com__content__right__card__img-container">
-                    <div className="com__content__right__card__text">
-                      User's Documents
-                    </div>
-                  </div>
-                </div>
+                {currentChildren.map(displayFolder)}
               </div>
             </div>
             <div className="com__content__right__card">

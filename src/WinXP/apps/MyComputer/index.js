@@ -26,40 +26,7 @@ import logo from 'assets/github-logo.png';
 import mine from 'assets/minesweeper/mine-icon.png';
 import windows from 'assets/windowsIcons/windows.png';
 
-const initialFiles = [
-  {
-    id: 1,
-    name: 'Shared Documents',
-    type: 'folder',
-    items: [
-      { id: 2, name: 'Project A', type: 'folder', items: [] },
-      { id: 3, name: 'Resume.docx', type: 'file' },
-    ],
-  },
-  {
-    id: 4,
-    name: 'User\'s Documents',
-    type: 'folder',
-    items: [
-      { id: 5, name: 'Report.pdf', type: 'file' },
-      { id: 6, name: 'Presentation.pptx', type: 'file' },
-    ],
-  },
-];
-
 function MyComputer({ onClose }) {
-  const openFolder = (folder) => {
-    if (folder.type === 'folder') {
-      setCurrentFolder(folder.items);
-    }
-  };
-
-  const goBack = () => {
-    // Logic to go back to the previous folder (if needed)
-    // For this simple case, we'll reset to the initial files
-    setCurrentFolder(files);
-  };
-  
   function onClickOptionItem(item) {
     switch (item) {
       case 'Close':
