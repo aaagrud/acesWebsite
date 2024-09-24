@@ -6,18 +6,18 @@ import FileManager from './FileManager';
 import Notepad from './Notepad';
 import Winamp from './Winamp';
 import Paint from './Paint';
-import iePaper from 'assets/windowsIcons/ie-paper.png';
-import fileicon from 'assets/windowsIcons/fileicon.png';
-import ie from 'assets/windowsIcons/ie.png';
-import mine from 'assets/minesweeper/mine-icon.png';
-import error from 'assets/windowsIcons/897(16x16).png';
-import computer from 'assets/windowsIcons/676(16x16).png';
-import computerLarge from 'assets/windowsIcons/676(32x32).png';
-import notepad from 'assets/windowsIcons/327(16x16).png';
-import notepadLarge from 'assets/windowsIcons/327(32x32).png';
-import winamp from 'assets/windowsIcons/winamp.png';
-import paintLarge from 'assets/windowsIcons/680(32x32).png';
-import paint from 'assets/windowsIcons/680(16x16).png';
+import iePaper from '../../assets/windowsIcons/ie-paper.png';
+import fileicon from '../../assets/windowsIcons/fileicon.png';
+import ie from '../../assets/windowsIcons/ie.png';
+import mine from '../../assets/minesweeper/mine-icon.png';
+import error from '../../assets/windowsIcons/897(16x16).png';
+import computer from '../../assets/windowsIcons/676(16x16).png';
+import computerLarge from '../../assets/windowsIcons/676(32x32).png';
+import notepad from '../../assets/windowsIcons/327(16x16).png';
+import notepadLarge from '../../assets/windowsIcons/327(32x32).png';
+import winamp from '../../assets/windowsIcons/winamp.png';
+import paintLarge from '../../assets/windowsIcons/680(32x32).png';
+import paint from '../../assets/windowsIcons/680(16x16).png';
 
 const gen = () => {
   let id = -1;
@@ -29,107 +29,107 @@ const gen = () => {
 const genId = gen();
 const genIndex = gen();
 export const defaultAppState = [
-  {
-    component: InternetExplorer,
-    header: {
-      title: 'Internet Explorer',
-      icon: iePaper,
-    },
-    defaultSize: {
-      width: 700,
-      height: 500,
-    },
-    defaultOffset: {
-      x: 130,
-      y: 20,
-    },
-    resizable: true,
-    minimized: true,
-    maximized: window.innerWidth < 800,
-    id: genId(),
-    zIndex: genIndex(),
-  },
-  {
-    component: FileManager,
-    header: {
-      title: 'File Manager',
-      icon: fileicon,
-    },
-    defaultSize: {
-      width: 700,
-      height: 500,
-    },
-    defaultOffset: {
-      x: 130,
-      y: 20,
-    },
-    resizable: true,
-    minimized: true,
-    maximized: window.innerWidth < 800,
-    id: genId(),
-    zIndex: genIndex(),
-  },
-  {
-    component: Minesweeper,
-    header: {
-      title: 'Minesweeper',
-      icon: mine,
-    },
-    defaultSize: {
-      width: 0,
-      height: 0,
-    },
-    defaultOffset: {
-      x: 180,
-      y: 170,
-    },
-    resizable: false,
-    minimized: true,
-    maximized: false,
-    id: genId(),
-    zIndex: genIndex(),
-  },
-  {
-    component: Winamp,
-    header: {
-      title: 'Winamp',
-      icon: winamp,
-      invisible: true,
-    },
-    defaultSize: {
-      width: 0,
-      height: 0,
-    },
-    defaultOffset: {
-      x: 0,
-      y: 0,
-    },
-    resizable: false,
-    minimized: true,
-    maximized: false,
-    id: genId(),
-    zIndex: genIndex(),
-  },
-  {
-    component: MyComputer,
-    header: {
-      title: 'My Computer',
-      icon: computer,
-    },
-    defaultSize: {
-      width: 660,
-      height: 500,
-    },
-    defaultOffset: {
-      x: 250,
-      y: 40,
-    },
-    resizable: true,
-    minimized: true,
-    maximized: false,
-    id: genId(),
-    zIndex: genIndex(),
-  },
+  // {
+  //   component: InternetExplorer,
+  //   header: {
+  //     title: 'Internet Explorer',
+  //     icon: iePaper,
+  //   },
+  //   defaultSize: {
+  //     width: 700,
+  //     height: 500,
+  //   },
+  //   defaultOffset: {
+  //     x: 130,
+  //     y: 20,
+  //   },
+  //   resizable: true,
+  //   minimized: true,
+  //   maximized: window.innerWidth < 800,
+  //   id: genId(),
+  //   zIndex: genIndex(),
+  // },
+  // {
+  //   component: FileManager,
+  //   header: {
+  //     title: 'File Manager',
+  //     icon: fileicon,
+  //   },
+  //   defaultSize: {
+  //     width: 700,
+  //     height: 500,
+  //   },
+  //   defaultOffset: {
+  //     x: 130,
+  //     y: 20,
+  //   },
+  //   resizable: true,
+  //   minimized: true,
+  //   maximized: window.innerWidth < 800,
+  //   id: genId(),
+  //   zIndex: genIndex(),
+  // },
+  // {
+  //   component: Minesweeper,
+  //   header: {
+  //     title: 'Minesweeper',
+  //     icon: mine,
+  //   },
+  //   defaultSize: {
+  //     width: 0,
+  //     height: 0,
+  //   },
+  //   defaultOffset: {
+  //     x: 180,
+  //     y: 170,
+  //   },
+  //   resizable: false,
+  //   minimized: true,
+  //   maximized: false,
+  //   id: genId(),
+  //   zIndex: genIndex(),
+  // },
+  // {
+  //   component: Winamp,
+  //   header: {
+  //     title: 'Winamp',
+  //     icon: winamp,
+  //     invisible: true,
+  //   },
+  //   defaultSize: {
+  //     width: 0,
+  //     height: 0,
+  //   },
+  //   defaultOffset: {
+  //     x: 0,
+  //     y: 0,
+  //   },
+  //   resizable: false,
+  //   minimized: true,
+  //   maximized: false,
+  //   id: genId(),
+  //   zIndex: genIndex(),
+  // },
+  // {
+  //   component: MyComputer,
+  //   header: {
+  //     title: 'My Computer',
+  //     icon: computer,
+  //   },
+  //   defaultSize: {
+  //     width: 660,
+  //     height: 500,
+  //   },
+  //   defaultOffset: {
+  //     x: 250,
+  //     y: 40,
+  //   },
+  //   resizable: true,
+  //   minimized: true,
+  //   maximized: false,
+  //   id: genId(),
+  //   zIndex: genIndex(),
+  // },
 ];
 
 export const defaultIconState = [
@@ -178,7 +178,7 @@ export const defaultIconState = [
   {
     id: 6,
     icon: fileicon,
-    title: 'File Manager',
+    title: 'Resources',
     component: FileManager,
     isFocus: false,
   },
@@ -263,10 +263,10 @@ export const appSettings = {
     maximized: window.innerWidth < 800,
     multiInstance: false,
   },
-  'File Manager': {
+  'Resources': {
     header: {
       icon: fileicon,
-      title: 'File Manager',
+      title: 'Resources',
     },
     component: FileManager,
     defaultSize: {
