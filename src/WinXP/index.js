@@ -275,10 +275,11 @@ function WinXP() {
   );
   function onClickModalButton(text) {
     dispatch({ type: CANCEL_POWER_OFF });
-    dispatch({
-      type: ADD_APP,
-      payload: appSettings.Error,
-    });
+    window.location.assign("https://aceswebsite.sanity.studio/desk")
+    //dispatch({
+    //  type: ADD_APP,
+    //  payload: appSettings.Error,
+    //});
   }
   function onModalClose() {
     dispatch({ type: CANCEL_POWER_OFF });
