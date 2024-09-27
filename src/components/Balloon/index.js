@@ -27,14 +27,23 @@ function Balloon({ startAfter = 3000, duration = 15000 }) {
           <div className="balloon__header">
             <img className="balloon__header__img" src={risk} alt="risk" />
             <span className="balloon__header__text">
-              Your computer might be at risk
+              Credits
             </span>
           </div>
           <p className="balloon__text__first">
-            Antivirus software might not be installed
+            Sindhu P.R.
           </p>
-          <p className="balloon__text__second">
-            Click this balloon to fix this problem.
+          <p className="balloon__text__first">
+            Mishal Faizal
+          </p>
+          <p className="balloon__text__first">
+            Ishika Ishani
+          </p>
+          <p className="balloon__text__first">
+            Durga Sumesh
+          </p>
+          <p className="balloon__text__first">
+            Sachin Manoj
           </p>
         </div>
       </Div>

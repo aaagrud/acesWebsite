@@ -5,7 +5,7 @@ import { WindowDropDowns } from 'components';
 import dropDownData from './dropDownData';
 
 export default function Notepad({ onClose }) {
-  const [docText, setDocText] = useState('');
+  const [docText, setDocText] = useState('ACES is ACESing let ACES be ACES more \n Jake the dog & finn the human '); // Set initial value to "Hello World"
   const [wordWrap, setWordWrap] = useState(false);
 
   function onClickOptionItem(item) {

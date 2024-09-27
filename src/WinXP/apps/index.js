@@ -50,6 +50,26 @@ export const defaultAppState = [
     zIndex: genIndex(),
   },
   {
+    component: Notepad,
+    header: {
+      title: 'Notepad',
+      icon: iePaper,
+    },
+    defaultSize: {
+      width: 500,
+      height: 500,
+    },
+    defaultOffset: {
+      x: 130,
+      y: 20,
+    },
+    resizable: true,
+    minimized: false,
+    maximized: window.innerWidth < 800,
+    id: genId(),
+    zIndex: genIndex(),
+  },
+  {
     component: FileManager,
     header: {
       title: 'File Manager',
