@@ -1,31 +1,31 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 
-import { WindowDropDowns } from 'components';
+import { WindowDropDowns } from '../../../components';
 import dropDownData from './dropDownData';
-import go from 'assets/windowsIcons/290.png';
-import search from 'assets/windowsIcons/299(32x32).png';
-import computer from 'assets/windowsIcons/676(16x16).png';
-import back from 'assets/windowsIcons/back.png';
-import blueback from 'assets/windowsIcons/back.png';
-import forward from 'assets/windowsIcons/forward.png';
-import up from 'assets/windowsIcons/up.png';
-import viewInfo from 'assets/windowsIcons/view-info.ico';
-import remove from 'assets/windowsIcons/302(16x16).png';
-import control from 'assets/windowsIcons/300(16x16).png';
-import network from 'assets/windowsIcons/693(16x16).png';
-import document from 'assets/windowsIcons/308(16x16).png';
-import folderSmall from 'assets/windowsIcons/318(16x16).png';
-import menu from 'assets/windowsIcons/358(32x32).png';
-import folder from 'assets/windowsIcons/318(48x48).png';
-import folderOpen from 'assets/windowsIcons/337(32x32).png';
-import disk from 'assets/windowsIcons/334(48x48).png';
-import cd from 'assets/windowsIcons/111(48x48).png';
-import dropdown from 'assets/windowsIcons/dropdown.png';
-import pullup from 'assets/windowsIcons/pullup.png';
-import logo from 'assets/github-logo.png';
-import mine from 'assets/minesweeper/mine-icon.png';
-import windows from 'assets/windowsIcons/windows.png';
+import go from '../../../assets/windowsIcons/290.png';
+import search from '../../../assets/windowsIcons/299(32x32).png';
+import computer from '../../../assets/windowsIcons/676(16x16).png';
+import back from '../../../assets/windowsIcons/back.png';
+import blueback from '../../../assets/windowsIcons/back.png';
+import forward from '../../../assets/windowsIcons/forward.png';
+import up from '../../../assets/windowsIcons/up.png';
+import viewInfo from '../../../assets/windowsIcons/view-info.ico';
+import remove from '../../../assets/windowsIcons/302(16x16).png';
+import control from '../../../assets/windowsIcons/300(16x16).png';
+import network from '../../../assets/windowsIcons/693(16x16).png';
+import document from '../../../assets/windowsIcons/308(16x16).png';
+import folderSmall from '../../../assets/windowsIcons/318(16x16).png';
+import menu from '../../../assets/windowsIcons/358(32x32).png';
+import folder from '../../../assets/windowsIcons/318(48x48).png';
+import folderOpen from '../../../assets/windowsIcons/337(32x32).png';
+import disk from '../../../assets/windowsIcons/334(48x48).png';
+import cd from '../../../assets/windowsIcons/111(48x48).png';
+import dropdown from '../../../assets/windowsIcons/dropdown.png';
+import pullup from '../../../assets/windowsIcons/pullup.png';
+import logo from '../../../assets/github-logo.png';
+import mine from '../../../assets/minesweeper/mine-icon.png';
+import windows from '../../../assets/windowsIcons/windows.png';
 
 function FileManager({ onClose }) {
   function onClickOptionItem(item) {
@@ -60,29 +60,43 @@ function FileManager({ onClose }) {
 
   const [currentChildren, editCurrentChildren] = useState(Initialfolders);
   const [breadcrumb, setBreadcrumb] = useState([{ name: "Root", children: Initialfolders }]);
-  const [isEmptyFolder, setIsEmptyFolder] = useState(false);
+  const [isRoot, setIsRoot] = useState(true);
+  const [inFocus, setInFocus] = useState("")
 
-
-  function folderClickHandler(event){
+  function folderDoubleClickHandler(event){
     const clickedItem = event.target.id;
     const clickedFolder = currentChildren.find((item) => item.name === clickedItem);
-    console.log(clickedFolder);
     setBreadcrumb([...breadcrumb, clickedFolder]);
     editCurrentChildren(clickedFolder.children);
-    if(breadcrumb){
-      setIsEmptyFolder(true);
+    if(currentChildren === Initialfolders){
+      setIsRoot(true);
+    } else {
+      setIsRoot(false);
     }
+    console.log(isRoot);
   }
 
+    function folderOnMouseDown(event){
+      if (inFocus==event.target.id){
+        setInFocus("")
+      }
+      else{
+        setInFocus(event.target.id)
+      }
+      
+
+    }
+
   function displayFolder(itemData){
-    return <div id={itemData.name} onClick={folderClickHandler} className="com__content__right__card__item">
-    <img
+    return <div id={itemData.name} onMouseDown={folderOnMouseDown} onDoubleClick={folderDoubleClickHandler} className="com__content__right__card__item">
+    <img id={itemData.name}
       src={folder}
       alt="folder"
       className="com__content__right__card__img"
+      style={{opacity:inFocus==itemData.name ? 0.5 : 1}}
     />
-    <div className="com__content__right__card__img-container">
-      <div className="com__content__right__card__text">
+    <div id={itemData.name} className="com__content__right__card__img-container" style={{backgroundColor:inFocus==itemData.name ? "#0b61ff" : "white", color:inFocus==itemData.name ? "white" : "black"}}>
+      <div  id={itemData.name} className="com__content__right__card__text">
         {itemData.name}
       </div>
     </div>
@@ -90,12 +104,17 @@ function FileManager({ onClose }) {
   }
 
   function backClickHandler(){
-    console.log("clicked back");
     if(breadcrumb.length > 1){
       const newBreadcrumb = breadcrumb.slice(0, breadcrumb.length - 1);
       const parentFolder = newBreadcrumb[newBreadcrumb.length - 1];
       setBreadcrumb(newBreadcrumb);
       editCurrentChildren(parentFolder.children);
+      if(currentChildren === Initialfolders){
+        setIsRoot(true);
+      } else {
+        setIsRoot(false);
+      }
+      console.log(isRoot);
     }
   }
 
@@ -111,13 +130,9 @@ function FileManager({ onClose }) {
         <img className="com__windows-logo" src={windows} alt="windows" />
       </section>
       <section className="com__function_bar">
-        <div className="com__function_bar__button--disable">
-          <img className="com__function_bar__icon" src={isEmptyFolder? back : blueback} onClick={backClickHandler} alt="" />
-          <span className="com__function_bar__text">Back</span>
-          <div className="com__function_bar__arrow" />
-        </div>
-        <div className="com__function_bar__button--disable">
-          <img className="com__function_bar__icon" src={forward} alt="" />
+        <div onClick={backClickHandler} className={isRoot? "com__function_bar__button--disable" : "com__function_bar__button"}>
+          <img className="com__function_bar__icon" src={back} onClick={backClickHandler} alt="" />
+          <span onClick={backClickHandler} className="com__function_bar__text">Back</span>
           <div className="com__function_bar__arrow" />
         </div>
         <div className="com__function_bar__button">
@@ -158,7 +173,7 @@ function FileManager({ onClose }) {
             alt="ie"
             className="com__address_bar__content__img"
           />
-          <div className="com__address_bar__content__text">My Computer</div>
+          <div className="com__address_bar__content__text">Resources</div>
           <img
             src={dropdown}
             alt="dropdown"
@@ -284,129 +299,21 @@ function FileManager({ onClose }) {
               </div>
               <div className="com__content__left__card__content">
                 <div className="com__content__left__card__row">
-                  <iframe
-                    title="ghbtn"
-                    style={{ margin: '0 0 3px -1px', height: '30px' }}
-                    src="https://ghbtns.com/github-btn.html?user=ShizukuIchi&repo=winXP&type=star&count=true&size=large"
-                    frameBorder="0"
-                    scrolling="0"
-                    width="170px"
-                    height="20px"
-                  />
+                  
                 </div>
                 <div className="com__content__left__card__row">
-                  <img
-                    className="com__content__left__card__img"
-                    src="https://cdn.iconscout.com/icon/free/png-256/medium-1425876-1205067.png"
-                    alt="control"
-                  />
-                  <a
-                    href="https://medium.com/@ShizukuIchi"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="com__content__left__card__text link"
-                  >
-                    Medium
-                  </a>
+                  
                 </div>
                 <div className="com__content__left__card__row">
-                  <img
-                    className="com__content__left__card__img"
-                    src={mine}
-                    alt="control"
-                  />
-                  <a
-                    href="https://github.com/ShizukuIchi/minesweeper"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="com__content__left__card__text link"
-                  >
-                    Minesweeper
-                  </a>
+                  
                 </div>
               </div>
             </div>
           </div>
           <div className="com__content__right">
             <div className="com__content__right__card">
-              <div className="com__content__right__card__header">
-                Files Stored on This Computer
-              </div>
               <div className="com__content__right__card__content">
                 {currentChildren.map(displayFolder)}
-              </div>
-            </div>
-            <div className="com__content__right__card">
-              <div className="com__content__right__card__header">
-                Hard Disk Drives
-              </div>
-              <div className="com__content__right__card__content">
-                <div className="com__content__right__card__item">
-                  <img
-                    src={disk}
-                    alt="disk"
-                    className="com__content__right__card__img"
-                  />
-                  <div className="com__content__right__card__img-container">
-                    <div className="com__content__right__card__text">
-                      Local Disk (C:)
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="com__content__right__card">
-              <div className="com__content__right__card__header">
-                Devices with Removable Storage
-              </div>
-              <div className="com__content__right__card__content">
-                <div className="com__content__right__card__item">
-                  <div className="com__content__right__card__img-container">
-                    <img
-                      src={cd}
-                      alt="cd"
-                      className="com__content__right__card__img"
-                    />
-                  </div>
-                  <div className="com__content__right__card__text">
-                    CD Drive (D:)
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="com__content__right__card com__content__right__card--me">
-              <div className="com__content__right__card__header">
-                About Me :)
-              </div>
-              <div className="com__content__right__card__content">
-                <a
-                  href="https://github.com/ShizukuIchi"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="com__content__right__card__item--me"
-                >
-                  <img
-                    className="com__content__right__card__img"
-                    src={logo}
-                    alt="control"
-                  />
-                  <div className="com__content__right__card__text">Github</div>
-                </a>
-                <a
-                  href="https://sh1zuku.csie.io"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="com__content__right__card__item--me"
-                >
-                  <img
-                    className="com__content__right__card__img"
-                    src="https://a.ppy.sh/2926513_1448497605.png"
-                    alt="control"
-                  />
-                  <div className="com__content__right__card__text">
-                    My Website
-                  </div>
-                </a>
               </div>
             </div>
           </div>
