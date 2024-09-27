@@ -30,26 +30,6 @@ const genId = gen();
 const genIndex = gen();
 export const defaultAppState = [
   {
-    component: InternetExplorer,
-    header: {
-      title: 'Internet Explorer',
-      icon: iePaper,
-    },
-    defaultSize: {
-      width: 700,
-      height: 500,
-    },
-    defaultOffset: {
-      x: 130,
-      y: 20,
-    },
-    resizable: true,
-    minimized: true,
-    maximized: window.innerWidth < 800,
-    id: genId(),
-    zIndex: genIndex(),
-  },
-  {
     component: Notepad,
     header: {
       title: 'Notepad',
@@ -66,87 +46,6 @@ export const defaultAppState = [
     resizable: true,
     minimized: false,
     maximized: window.innerWidth < 800,
-    id: genId(),
-    zIndex: genIndex(),
-  },
-  {
-    component: FileManager,
-    header: {
-      title: 'File Manager',
-      icon: fileicon,
-    },
-    defaultSize: {
-      width: 700,
-      height: 500,
-    },
-    defaultOffset: {
-      x: 130,
-      y: 20,
-    },
-    resizable: true,
-    minimized: true,
-    maximized: window.innerWidth < 800,
-    id: genId(),
-    zIndex: genIndex(),
-  },
-  {
-    component: Minesweeper,
-    header: {
-      title: 'Minesweeper',
-      icon: mine,
-    },
-    defaultSize: {
-      width: 0,
-      height: 0,
-    },
-    defaultOffset: {
-      x: 180,
-      y: 170,
-    },
-    resizable: false,
-    minimized: true,
-    maximized: false,
-    id: genId(),
-    zIndex: genIndex(),
-  },
-  {
-    component: Winamp,
-    header: {
-      title: 'Winamp',
-      icon: winamp,
-      invisible: true,
-    },
-    defaultSize: {
-      width: 0,
-      height: 0,
-    },
-    defaultOffset: {
-      x: 0,
-      y: 0,
-    },
-    resizable: false,
-    minimized: true,
-    maximized: false,
-    id: genId(),
-    zIndex: genIndex(),
-  },
-  {
-    component: MyComputer,
-    header: {
-      title: 'My Computer',
-      icon: computer,
-    },
-    defaultSize: {
-      width: 660,
-      height: 500,
-    },
-    defaultOffset: {
-      x: 250,
-      y: 40,
-    },
-    resizable: true,
-    minimized: true,
-    maximized: false,
     id: genId(),
     zIndex: genIndex(),
   },

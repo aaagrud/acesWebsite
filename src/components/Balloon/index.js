@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components';
 
 import risk from '../../assets/windowsIcons/229(16x16).png';
 
-function Balloon({ startAfter = 3000, duration = 15000 }) {
+function Balloon({ startAfter = 1000, duration = 15000 }) {
   const [show, setShow] = useState(true);
   const [start, setStart] = useState(false);
   useEffect(() => {
@@ -34,7 +34,7 @@ function Balloon({ startAfter = 3000, duration = 15000 }) {
             Sindhu P.R.
           </p>
           <p className="balloon__text__first">
-            Mishal Faizal
+            Mishal Faisal
           </p>
           <p className="balloon__text__first">
             Ishika Ishani

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 
 import { WindowDropDowns } from '../../../components';
@@ -19,6 +19,7 @@ import folderSmall from '../../../assets/windowsIcons/318(16x16).png';
 import menu from '../../../assets/windowsIcons/358(32x32).png';
 import folder from '../../../assets/windowsIcons/318(48x48).png';
 import folderOpen from '../../../assets/windowsIcons/337(32x32).png';
+import ie from '../../../assets/windowsIcons/11(48x48).png';
 import disk from '../../../assets/windowsIcons/334(48x48).png';
 import cd from '../../../assets/windowsIcons/111(48x48).png';
 import dropdown from '../../../assets/windowsIcons/dropdown.png';
@@ -52,7 +53,6 @@ function FileManager({ onClose }) {
       children: [
         {
           name: "Story.txt",
-          children: [],
         }
       ],
     }
@@ -66,14 +66,13 @@ function FileManager({ onClose }) {
   function folderDoubleClickHandler(event){
     const clickedItem = event.target.id;
     const clickedFolder = currentChildren.find((item) => item.name === clickedItem);
-    setBreadcrumb([...breadcrumb, clickedFolder]);
-    editCurrentChildren(clickedFolder.children);
-    if(currentChildren === Initialfolders){
-      setIsRoot(true);
+    if (clickedFolder.children){
+      setBreadcrumb([...breadcrumb, clickedFolder]);
+      editCurrentChildren(clickedFolder.children);
     } else {
-      setIsRoot(false);
+      alert("file")
     }
-    console.log(isRoot);
+    
   }
 
     function folderOnMouseDown(event){
@@ -83,14 +82,12 @@ function FileManager({ onClose }) {
       else{
         setInFocus(event.target.id)
       }
-      
-
     }
 
   function displayFolder(itemData){
     return <div id={itemData.name} onMouseDown={folderOnMouseDown} onDoubleClick={folderDoubleClickHandler} className="com__content__right__card__item">
     <img id={itemData.name}
-      src={folder}
+      src={itemData.children ? folder : ie}
       alt="folder"
       className="com__content__right__card__img"
       style={{opacity:inFocus==itemData.name ? 0.5 : 1}}
@@ -109,14 +106,16 @@ function FileManager({ onClose }) {
       const parentFolder = newBreadcrumb[newBreadcrumb.length - 1];
       setBreadcrumb(newBreadcrumb);
       editCurrentChildren(parentFolder.children);
-      if(currentChildren === Initialfolders){
-        setIsRoot(true);
-      } else {
-        setIsRoot(false);
-      }
-      console.log(isRoot);
     }
   }
+
+  useEffect(()=>{
+    if(JSON.stringify(currentChildren) === JSON.stringify(Initialfolders)){
+      setIsRoot(true);
+    } else {
+      setIsRoot(false);
+    }
+  }, [currentChildren])
 
   return (
     <Div>
@@ -130,7 +129,7 @@ function FileManager({ onClose }) {
         <img className="com__windows-logo" src={windows} alt="windows" />
       </section>
       <section className="com__function_bar">
-        <div onClick={backClickHandler} className={isRoot? "com__function_bar__button--disable" : "com__function_bar__button"}>
+        <div onClick={backClickHandler} className={isRoot ? "com__function_bar__button--disable" : "com__function_bar__button"}>
           <img className="com__function_bar__icon" src={back} onClick={backClickHandler} alt="" />
           <span onClick={backClickHandler} className="com__function_bar__text">Back</span>
           <div className="com__function_bar__arrow" />
