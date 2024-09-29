@@ -31,7 +31,7 @@ function Balloon({ startAfter = 1000, duration = 15000 }) {
             </span>
           </div>
           <p className="balloon__text__first">
-            Sindhu P.R.
+            Sindhu P.R
           </p>
           <p className="balloon__text__first">
             Mishal Faisal

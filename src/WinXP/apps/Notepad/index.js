@@ -5,7 +5,7 @@ import { WindowDropDowns } from '../../../components';
 import dropDownData from './dropDownData';
 
 export default function Notepad({ onClose }) {
-  const [docText, setDocText] = useState('ACES is ACESing let ACES be ACES more \n Jake the dog & finn the human '); // Set initial value to "Hello World"
+  const [docText, setDocText] = useState('WELCOME TO OFFICAL WEBSITE OF ACES CUSAT \n \n ACES strives to establish a welcoming community for CSE students where they can \n \n unleash their coding skills, connect with peers, and transform their ideas into reality. \n \n Our mission is to offer a holistic experience that encompasses academic, \n \n professional, and extracurricular initiatives'); 
   const [wordWrap, setWordWrap] = useState(false);
 
   function onClickOptionItem(item) {
@@ -26,7 +26,6 @@ export default function Notepad({ onClose }) {
     }
   }
   function onTextAreaKeyDown(e) {
-    // handle tabs in text area
     if (e.which === 9) {
       e.preventDefault();
       e.persist();
