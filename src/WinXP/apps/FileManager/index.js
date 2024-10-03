@@ -61,7 +61,8 @@ function FileManager({ onClose }) {
   const [currentChildren, editCurrentChildren] = useState(Initialfolders);
   const [breadcrumb, setBreadcrumb] = useState([{ name: "Root", children: Initialfolders }]);
   const [isRoot, setIsRoot] = useState(true);
-  const [inFocus, setInFocus] = useState("")
+  const [inFocus, setInFocus] = useState("");
+  const [path, editPath] = useState([]);
 
   function folderDoubleClickHandler(event){
     const clickedItem = event.target.id;
@@ -69,6 +70,7 @@ function FileManager({ onClose }) {
     if (clickedFolder.children){
       setBreadcrumb([...breadcrumb, clickedFolder]);
       editCurrentChildren(clickedFolder.children);
+      editPath(prevPath => [...prevPath, clickedFolder.name]);
     } else {
       alert("file")
     }
@@ -106,6 +108,13 @@ function FileManager({ onClose }) {
       const parentFolder = newBreadcrumb[newBreadcrumb.length - 1];
       setBreadcrumb(newBreadcrumb);
       editCurrentChildren(parentFolder.children);
+
+      editPath(prevPath => {
+        if (prevPath.length > 0) {
+          return prevPath.slice(0, prevPath.length - 1); 
+        }
+        return prevPath; 
+      });
     }
   }
 
@@ -172,7 +181,7 @@ function FileManager({ onClose }) {
             alt="ie"
             className="com__address_bar__content__img"
           />
-          <div className="com__address_bar__content__text">Resources</div>
+          <div className="com__address_bar__content__text">Resources ›  {path.map(item => item).join(' › ')} </div>
           <img
             src={dropdown}
             alt="dropdown"
