@@ -36,8 +36,8 @@ export const defaultAppState = [
       icon: iePaper,
     },
     defaultSize: {
-      width: 750,
-      height: 380,
+      width: 730,
+      height: 250,
     },
     defaultOffset: {
       x: 130,

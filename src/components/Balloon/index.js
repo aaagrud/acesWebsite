@@ -27,23 +27,11 @@ function Balloon({ startAfter = 1000, duration = 15000 }) {
           <div className="balloon__header">
             <img className="balloon__header__img" src={risk} alt="risk" />
             <span className="balloon__header__text">
-              Credits
+              Developed By
             </span>
           </div>
           <p className="balloon__text__first">
-            Sindhu P.R
-          </p>
-          <p className="balloon__text__first">
-            Mishal Faisal
-          </p>
-          <p className="balloon__text__first">
-            Ishika Ishani
-          </p>
-          <p className="balloon__text__first">
-            Durga Sumesh
-          </p>
-          <p className="balloon__text__first">
-            Sachin Manoj
+            Sindhu P.R , Mishal Faisal , Ishika Ishani , Durga Sumesh , Sachin Manoj
           </p>
         </div>
       </Div>
