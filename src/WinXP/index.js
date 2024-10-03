@@ -274,15 +274,23 @@ function WinXP() {
     [dispatch],
   );
   function onClickModalButton(text) {
-    dispatch({ type: CANCEL_POWER_OFF });
-    window.location.assign("https://aceswebsite.sanity.studio/desk")
-    //dispatch({
-    //  type: ADD_APP,
-    //  payload: appSettings.Error,
-    //});
+    if (text === "Restart") {
+      window.location.reload(); 
+    }
+
+    else if(text.trim().toLowerCase() === "turn off"){
+      alert("Bruh close the window like a normal person");
+    }
+
+    else {
+      dispatch({ type: CANCEL_POWER_OFF });
+      window.location.assign("https://aceswebsite.sanity.studio/desk");
+    }
   }
+  
   function onModalClose() {
     dispatch({ type: CANCEL_POWER_OFF });
+    
   }
   return (
     <Container
