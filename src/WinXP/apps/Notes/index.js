@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
-
 import { WindowDropDowns } from '../../../components';
 import dropDownData from './dropDownData';
 import go from '../../../assets/windowsIcons/290.png';
@@ -28,7 +27,7 @@ import logo from '../../../assets/github-logo.png';
 import mine from '../../../assets/minesweeper/mine-icon.png';
 import windows from '../../../assets/windowsIcons/windows.png';
 
-function FileManager({ onClose }) {
+function Notes({ onClose }) {
   function onClickOptionItem(item) {
     switch (item) {
       case 'Close':
@@ -38,33 +37,207 @@ function FileManager({ onClose }) {
     }
   }
 
-  const Initialfolders = [
+  const Folders = [
     {
-      name: "Shared Documents",
-      children: [
+      name : "2019 Scheme",
+      children : [
         {
-          name: "Untitled",
-          children: [],
-        }
-      ],
+          name: "1st Year",
+          children: [
+            {
+              name: "Sem 1",
+              children: [
+                { "name": "Calculus", "children": [] },
+                { "name": "Engineering Physics", "children": [] },
+                { "name": "Engineering Mechanics", "children": [] },
+                { "name": "Basic Civil", "children": [] },
+                { "name": "Basic Mechanical", "children": [] },
+                { "name": "Soft Skills", "children": [] },
+                { "name": "Civil Engineering", "children": [] },
+                { "name": "Mechanical Engineering", "children": [] },
+                { "name": "Language Lab", "children": [] },
+                { "name": "NSS / Nature", "children": [] }
+              ],
+            },
+            {
+              name: "Sem 2",
+              children: [
+                { "name": "Computer Programming", "children": [] },
+                { "name": "Engineering Chemistry", "children": [] },
+                { "name": "Engineering Graphics", "children": [] },
+                { "name": "Basic Electrical", "children": [] },
+                { "name": "Basic Electronics", "children": [] },
+                { "name": "Environmental Studies", "children": [] },
+                { "name": "Electrical Workshop", "children": [] },
+                { "name": "CP Laboratory", "children": [] }
+              ],
+            },
+          ],
+        },
+        {
+          name: "2nd Year",
+          children: [
+            {
+              name: "Sem 3",
+              children: [
+                { "name": "LATT", "children": [] },
+                { "name": "LD", "children": [] },
+                { "name": "DCS", "children": [] },
+                { "name": "OOP", "children": [] },
+                { "name": "PPL", "children": [] },
+                { "name": "DCC", "children": [] },
+                { "name": "DE Laboratory", "children": [] },
+                { "name": "OOP Laboratory", "children": [] }
+              ],
+            },
+            {
+              name: "Sem 4",
+              children: [
+                { "name": "CVPD", "children": [] },
+                { "name": "MP", "children": [] },
+                { "name": "CAO", "children": [] },
+                { "name": "ALC", "children": [] },
+                { "name": "DSA", "children": [] },
+                { "name": "DBMS", "children": [] },
+                { "name": "UHV", "children": [] },
+                { "name": "DBMS Laboratory", "children": [] },
+                { "name": "DS Laboratory", "children": [] }
+              ],
+            },
+          ],
+        },
+        {
+          name: "3rd Year",
+          children: [
+            {
+              name: "Sem 5",
+              children: [
+                { "name": "NSM", "children": [] },
+                { "name": "SP", "children": [] },
+                { "name": "OOSE", "children": [] },
+                { "name": "CG", "children": [] },
+                { "name": "AMM", "children": [] },
+                { "name": "Web Tech", "children": [] },
+                { "name": "ML", "children": [] },
+                { "name": "CG Laboratory", "children": [] },
+                { "name": "MP Laboratory", "children": [] }
+              ],
+            },
+            {
+              name: "Sem 6",
+              children: [
+                { "name": "CN", "children": [] },
+                { "name": "CC", "children": [] },
+                { "name": "ADAs", "children": [] },
+                { "name": "DM", "children": [] },
+                { "name": "OS", "children": [] },
+                { "name": "NNDL", "children": [] },
+                { "name": "SPM", "children": [] },
+                { "name": "OS Laboratory", "children": [] },
+                { "name": "Mini Project", "children": [] }
+              ],
+            },
+          ],
+        },
+        {
+          name: "4th Year",
+          children: [
+            {
+              name: "Sem 7",
+              children: [
+                { "name": "PM", "children": [] },
+                { "name": "AAPP", "children": [] },
+                { "name": "CN", "children": [] },
+                { "name": "Elective III", "children": [] },
+                { "name": "Open Elective I", "children": [] },
+                { "name": "LP Laboratory", "children": [] },
+                { "name": "Network Lab", "children": [] },
+                { "name": "ED", "children": [] },
+                { "name": "Project Phase I", "children": [] },
+              ],
+            },
+            {
+              name: "Sem 8",
+              children: [
+                { "name": "AI", "children": [] },
+                { "name": "Elective IV", "children": [] },
+                { "name": "Elective V", "children": [] },
+                { "name": "Open Elective II", "children": [] },
+                { "name": "Seminar", "children": [] },
+                { "name": "Project Phase II", "children": [] },
+              ],
+            },
+          ],
+        },
+      ]
     },
     {
-      name: "User's Documents",
-      children: [
+      name : "2023 Scheme",
+      children : [
         {
-          name: "Story.txt",
-        }
-      ],
+          name: "1st Year",
+          children: [
+            {
+              name: "Sem 1",
+              children: [],
+            },
+            {
+              name: "Sem 2",
+              children: [],
+            },
+          ],
+        },
+        {
+          name: "2nd Year",
+          children: [
+            {
+              name: "Sem 3",
+              children: [],
+            },
+            {
+              name: "Sem 4",
+              children: [],
+            },
+          ],
+        },
+        {
+          name: "3rd Year",
+          children: [
+            {
+              name: "Sem 5",
+              children: [],
+            },
+            {
+              name: "Sem 6",
+              children: [],
+            },
+          ],
+        },
+        {
+          name: "4th Year",
+          children: [
+            {
+              name: "Sem 7",
+              children: [],
+            },
+            {
+              name: "Sem 8",
+              children: [],
+            },
+          ],
+        },
+      ]
     }
   ]
 
-  const [currentChildren, editCurrentChildren] = useState(Initialfolders);
-  const [breadcrumb, setBreadcrumb] = useState([{ name: "Root", children: Initialfolders }]);
+  const [currentChildren, editCurrentChildren] = useState(Folders);
+  const [breadcrumb, setBreadcrumb] = useState([{ name: "Root", children: Folders }]);
   const [isRoot, setIsRoot] = useState(true);
   const [inFocus, setInFocus] = useState("");
   const [path, editPath] = useState([]);
 
   function folderDoubleClickHandler(event){
+    console.log(path);
     const clickedItem = event.target.id;
     const clickedFolder = currentChildren.find((item) => item.name === clickedItem);
     if (clickedFolder.children){
@@ -104,22 +277,19 @@ function FileManager({ onClose }) {
 
   function backClickHandler(){
     if(breadcrumb.length > 1){
+      editPath(prevPath => {
+        return prevPath.slice(0, -1);
+      });
+      console.log(path);
       const newBreadcrumb = breadcrumb.slice(0, breadcrumb.length - 1);
       const parentFolder = newBreadcrumb[newBreadcrumb.length - 1];
       setBreadcrumb(newBreadcrumb);
       editCurrentChildren(parentFolder.children);
-
-      editPath(prevPath => {
-        if (prevPath.length > 0) {
-          return prevPath.slice(0, prevPath.length - 1); 
-        }
-        return prevPath; 
-      });
     }
   }
 
   useEffect(()=>{
-    if(JSON.stringify(currentChildren) === JSON.stringify(Initialfolders)){
+    if(JSON.stringify(currentChildren) === JSON.stringify(Folders)){
       setIsRoot(true);
     } else {
       setIsRoot(false);
@@ -181,7 +351,7 @@ function FileManager({ onClose }) {
             alt="ie"
             className="com__address_bar__content__img"
           />
-          <div className="com__address_bar__content__text">Resources ›  {path.map(item => item).join(' › ')} </div>
+          <div className="com__address_bar__content__text">{console.log(path)} Notes ›  {path.map(item => item).join(' › ')} </div>
           <img
             src={dropdown}
             alt="dropdown"
@@ -707,4 +877,4 @@ const Div = styled.div`
   }
 `;
 
-export default FileManager;
+export default  Notes;

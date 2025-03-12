@@ -2,7 +2,7 @@ import InternetExplorer from './InternetExplorer';
 import Minesweeper from './Minesweeper';
 import ErrorBox from './ErrorBox';
 import MyComputer from './MyComputer';
-import FileManager from './FileManager';
+import FileManager from './Notes';
 import Notepad from './Notepad';
 import Winamp from './Winamp';
 import Paint from './Paint';
@@ -198,7 +198,7 @@ export const defaultIconState = [
   {
     id: 6,
     icon: fileicon,
-    title: 'Resources',
+    title: 'Notes',
     component: FileManager,
     isFocus: false,
   },
